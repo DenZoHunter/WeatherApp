@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 import ru.geekbrains.weatherapp.R
 import ru.geekbrains.weatherapp.model.*
@@ -84,8 +85,12 @@ class DetailsFragment : Fragment() {
         temperatureValue.text = weather.temperature.toString()
         feelsLikeValue.text = weather.feelsLike.toString()
         weatherCondition.text = weather.condition
-    }
 
+        Picasso
+            .get()
+            .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")
+            .into(headerIcon)
+    }
 
     companion object {
 
