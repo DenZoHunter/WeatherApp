@@ -76,6 +76,7 @@ class DetailsFragment : Fragment() {
 
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         cityName.text = city.city
         cityCoordinates.text = String.format(
             getString(R.string.city_coordinates),
@@ -91,6 +92,21 @@ class DetailsFragment : Fragment() {
             .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")
             .into(headerIcon)
     }
+
+    private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
+    }
+
 
     companion object {
 

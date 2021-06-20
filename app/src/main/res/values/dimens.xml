@@ -13,5 +13,6 @@
     <dimen name="margin_5_dp">5dp</dimen>
     <dimen name="city_name_margin_top">10dp</dimen>
     <dimen name="town_header_height">100dp</dimen>
+    <dimen name="hairline">1dp</dimen>
 
 </resources>
