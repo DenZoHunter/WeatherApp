@@ -1,19 +1,17 @@
 package ru.geekbrains.weatherapp.view.main
 
-import android.content.Context
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.main_activity.*
 import ru.geekbrains.weatherapp.R
 import ru.geekbrains.weatherapp.databinding.FragmentMainBinding
 import ru.geekbrains.weatherapp.model.Weather
+import ru.geekbrains.weatherapp.model.showSnackBar
 import ru.geekbrains.weatherapp.view.details.DetailsFragment
 import ru.geekbrains.weatherapp.viewmodel.AppState
 import ru.geekbrains.weatherapp.viewmodel.MainViewModel
@@ -102,28 +100,7 @@ class MainFragment : Fragment() {
             MainFragment()
     }
 
-    private fun View.showSnackBar(
-        text: String,
-        actionText: String,
-        action: (View) -> Unit,
-        length: Int = Snackbar.LENGTH_INDEFINITE
-    ) {
-        Snackbar.make(this, text, length).setAction(actionText, action).show()
-    }
 
-    fun View.showKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        this.requestFocus()
-        imm.showSoftInput(this, 0)
-    }
-
-    fun View.hideKeyboard(): Boolean {
-        try {
-            val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-        } catch (ignored: RuntimeException) { }
-        return false
-    }
 
 
 }
