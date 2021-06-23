@@ -12,10 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp">
+        <provider
+            android:name=".contentprovider.ContentProvider"
+            android:authorities="weatherapp.provider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <service android:name=".model.DetailsService" />
+
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
