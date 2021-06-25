@@ -3,6 +3,7 @@
     package="ru.geekbrains.weatherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".app.App"
@@ -16,14 +17,11 @@
             android:name=".contentprovider.ContentProvider"
             android:authorities="weatherapp.provider"
             android:enabled="true"
-            android:exported="true"></provider>
-
+            android:exported="true" />
         <service android:name=".model.DetailsService" />
-
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
