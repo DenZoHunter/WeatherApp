@@ -8,6 +8,15 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword '123456789'
+            keyAlias 'alias'
+            keyPassword '123456789'
+        }
+    }
+
     buildFeatures {
         viewBinding = true
     }
@@ -32,13 +41,30 @@ android {
         it.buildConfigField "String", "WEATHER_API_KEY", apiKey
     }
 
+
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TYPE", '"RELEASE"'
         }
 
+        beta {
+            initWith debug
+            versionNameSuffix "-beta"
+            buildConfigField "String", "TYPE", '"BETA"'
+        }
+
+        debug {
+            versionNameSuffix "-debug"
+            buildConfigField "String", "TYPE", '"DEBUG"'
+        }
     }
+
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -46,6 +72,19 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    flavorDimensions 'version'
+
+
+    productFlavors {
+        free {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        paid {
+            dimension 'version'
+            versionNameSuffix '.paid'
+        }
     }
 
 }
